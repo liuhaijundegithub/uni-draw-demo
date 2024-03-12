@@ -1,0 +1,174 @@
+@main-color: #067bef;
+
+.stadio-wrapper {
+  height: 100%;
+  padding: 14px;
+  overflow: scroll;
+  flex: 1;
+  margin-right: 10px;
+  #canvas-engine {
+    height: 1000px;
+    width: 1600px;
+    position: relative;
+    background: url('../../assets/bg.png') repeat;
+    display: block;
+    > canvas {
+      height: 1000px;
+      width: 1600px;
+    }
+    &.addMode {
+      cursor: crosshair;
+    }
+    :deep(.line-text) {
+      position: absolute;
+      z-index: 3;
+      min-height: 20px;
+      background: #fff;
+      border-radius: 2px;
+      outline: none;
+      width: fit-content;
+      min-width: 50px;
+      white-space: nowrap;
+      text-align: center;
+      cursor: default;
+      &:focus {
+        border: 2px solid @main-color;
+      }
+      &.moving {
+        border: 1px solid #000;
+        user-select: none;
+        cursor: move;
+      }
+    }
+    :deep(.shape-control) {
+      cursor: move;
+      z-index: 1;
+      background: transparent;
+      .edit-canvas {
+        display: none;
+      }
+      .shape-text {
+        z-index: 3;
+        position: absolute;
+        outline: none;
+        word-break: break-all;
+        padding: 10px;
+        pointer-events: none;
+      }
+      &.active {
+        .stretch-point, .line-point-1 {
+          display: block;
+          z-index: 3;
+          &:hover {
+            background: @main-color;
+          }
+        }
+        .edit-canvas {
+          display: block;
+          z-index: 10000;
+        }
+      }
+      &:hover {
+        .line-point {
+          display: block!important;
+        }
+      }
+      .line-point, .stretch-point, .line-point-1 {
+        position: absolute;
+        height: 8px;
+        width: 8px;
+        border-radius: 8px;
+        display: none;
+        z-index: 10001;
+        border: 1px solid @main-color;
+        background: #fff;
+        cursor: crosshair;
+        &.stretch-point {
+          z-index: 10002;
+          border-radius: 0;
+        }
+        &.line-point-1 {
+          z-index: 10002;
+        }
+        &.active {
+          border-color: @main-color;
+          background: @main-color;
+          display: block;
+        }
+        &.hit {
+          background-color: @main-color;
+        }
+        &.top {
+          top: -4px;
+          left: calc(~"50% - 4px");
+        }
+        &.left {
+          left: -4px;
+          top: calc(~"50% - 4px");
+        }
+        &.right {
+          right: -4px;
+          top: calc(~"50% - 4px");
+        }
+        &.bottom {
+          bottom: -4px;
+          left: calc(~"50% - 4px");
+        }
+        &.top-left {
+          top: -4px;
+          left: -4px;
+        }
+        &.top-right {
+          right: -4px;
+          top: -4px;
+        }
+        &.bottom-left {
+          left: -4px;
+          bottom: -4px;
+        }
+        &.bottom-right {
+          right: -4px;
+          bottom: -4px;
+        }
+      }
+    }
+    :deep(.line-wrapper) {
+      &.active {
+        .line-point {
+          display: block;
+          z-index: 4;
+        }
+      }
+      .line-point {
+        border: 1px solid @main-color;
+        // border-radius: 8px;
+        height: 8px;
+        width: 8px;
+        position: absolute;
+        margin-left: -4px;
+        margin-top: -4px;
+        background: #fff;
+        display: none;
+        cursor: crosshair;
+        pointer-events: all!important;
+        &:hover {
+          background: @main-color;
+        }
+      }
+    }
+  }
+  :deep(#tool-canvas) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    // z-index: 3;
+  }
+  :deep(#range-canvas) {
+    position: absolute;
+    z-index: 3;
+    // border: 1px solid red;
+    cursor: move;
+  }
+}

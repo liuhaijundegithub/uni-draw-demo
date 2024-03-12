@@ -1,0 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #f5f6f8;
+}
+:root {
+  color: #2d405e;
+  --border-color: #e3e8f1;
+  font-size: 14px;
+}
+#app {
+  box-sizing: border-box;
+  height: 100%;
+}
